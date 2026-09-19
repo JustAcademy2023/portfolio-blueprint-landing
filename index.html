@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Portfolio Blueprint — Build What Gets You Interviews | JustAcademy</title>
+<meta name="description" content="A step-by-step blueprint for building a developer portfolio that actually gets you interviews, plus the courses to help you build it.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0A2036;
+    --bg-2: #0D2843;
+    --paper: #0E2A47;
+    --grid: rgba(234,244,255,0.055);
+    --grid-strong: rgba(234,244,255,0.12);
+    --ink: #EAF4FF;
+    --ink-dim: #93B4D2;
+    --ink-faint: #5F80A0;
+    --yellow: #FFC94A;
+    --coral: #FF6B57;
+    --border: #1E4970;
+    --border-soft: #163a5c;
+    --mono: 'IBM Plex Mono', monospace;
+    --head: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 42px 42px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 42px 42px,
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding:0 28px; }
+
+  ::selection{ background: var(--yellow); color: #0A2036; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px dashed var(--yellow);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(10,32,54,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--head); font-weight:700; font-size: 1.15rem; letter-spacing: 0.2px;
+  }
+  .logo .mark{
+    width: 30px; height:30px; border:1.5px solid var(--yellow);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono); font-size:0.75rem; color: var(--yellow);
+    transform: rotate(45deg);
+    flex-shrink:0;
+  }
+  .logo .mark span{ transform: rotate(-45deg); }
+
+  .nav-links{ display:flex; align-items:center; gap: 34px; }
+  .nav-links a{
+    font-size: 0.93rem; color: var(--ink-dim); font-weight:500;
+    position:relative; padding: 4px 0;
+    transition: color .2s ease;
+  }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background: var(--yellow); transition: width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .nav-cta{
+    font-family: var(--mono); font-size: 0.82rem;
+    border: 1px solid var(--yellow); color: var(--yellow);
+    padding: 9px 18px;
+    transition: background .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover{ background: var(--yellow); color: #0A2036; }
+
+  .burger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+  .burger span{ width:22px; height:2px; background: var(--ink); display:block; }
+
+  .mobile-menu{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 40px;
+    position: relative;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items:center;
+  }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--mono); font-size:0.78rem; color: var(--ink-faint);
+    margin-bottom: 22px;
+  }
+  .eyebrow-line .dash{ width:26px; height:1px; background: var(--border); }
+
+  h1.hero-title{
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+    line-height: 1.06;
+    letter-spacing: -0.5px;
+    max-width: 640px;
+  }
+  h1.hero-title em{
+    font-style: normal;
+    color: var(--yellow);
+  }
+
+  .hero-sub{
+    margin-top: 22px;
+    color: var(--ink-dim);
+    font-size: 1.08rem;
+    max-width: 480px;
+  }
+
+  .hero-ctas{ display:flex; gap:16px; margin-top: 36px; flex-wrap: wrap; }
+  .btn-primary{
+    font-family: var(--mono); font-size:0.88rem;
+    background: var(--coral); color: #14202f;
+    padding: 14px 26px;
+    display:inline-flex; align-items:center; gap:10px;
+    border: 1px solid var(--coral);
+    font-weight:500;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 0 0 rgba(255,107,87,0.25); }
+
+  .btn-ghost{
+    font-family: var(--mono); font-size:0.88rem;
+    color: var(--ink);
+    padding: 14px 22px;
+    border: 1px solid var(--border);
+    transition: border-color .18s ease, color .18s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--ink-dim); color: var(--yellow); }
+
+  /* Hero diagram */
+  .diagram{
+    position: relative;
+    border: 1px solid var(--border);
+    background: rgba(14,42,71,0.5);
+    padding: 26px;
+    min-height: 380px;
+  }
+  .diagram::before, .diagram::after,
+  .diagram .c2, .diagram .c3{
+    content:''; position:absolute; width:14px; height:14px;
+    border-color: var(--ink-faint); border-style: solid;
+  }
+  .diagram::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+  .diagram::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+  .diagram .c2{ top:-1px; right:-1px; border-width:1px 1px 0 0; }
+  .diagram .c3{ bottom:-1px; left:-1px; border-width:0 0 1px 1px; }
+
+  .diagram-label{
+    font-family: var(--mono); font-size:0.7rem; color: var(--ink-faint);
+    display:flex; justify-content:space-between; margin-bottom: 22px;
+  }
+
+  .card-row{
+    display:flex; align-items:center; gap: 14px; padding: 13px 0;
+    border-bottom: 1px dashed var(--border-soft);
+  }
+  .card-row:last-child{ border-bottom:none; }
+  .card-row .dim{ font-family: var(--mono); font-size:0.72rem; color: var(--ink-faint); width:26px; }
+  .card-row .part{ font-family: var(--head); font-weight:600; font-size:0.98rem; flex:1; }
+  .card-row .val{ font-family: var(--mono); font-size:0.72rem; color: var(--yellow); }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-band{
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--paper);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation: scroll-left 32s linear infinite;
+  }
+  .marquee-track span{
+    font-family: var(--mono); font-size:0.82rem; color: var(--ink-dim);
+    padding: 0 22px; display:inline-flex; align-items:center; gap:22px;
+  }
+  .marquee-track span i{ color: var(--yellow); font-style:normal; }
+  @keyframes scroll-left{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 90px 0; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap: 30px; margin-bottom: 54px; flex-wrap: wrap;
+  }
+  .section-tag{
+    font-family: var(--mono); font-size:0.78rem; color: var(--ink-faint);
+    margin-bottom:14px; display:block;
+  }
+  h2.section-title{
+    font-family: var(--head); font-weight:700;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    max-width: 520px; line-height:1.18;
+  }
+  .section-note{
+    max-width: 320px; color: var(--ink-dim); font-size:0.95rem;
+  }
+
+  /* ---------- BLUEPRINT STEPS ---------- */
+  .steps{ position:relative; }
+  .step{
+    display:grid; grid-template-columns: 90px 1fr;
+    gap: 26px;
+    padding: 30px 0;
+    border-top: 1px solid var(--border-soft);
+    position: relative;
+  }
+  .step:last-child{ border-bottom: 1px solid var(--border-soft); }
+  .step-num{
+    font-family: var(--mono); color: var(--yellow); font-size:0.95rem;
+    padding-top: 3px;
+  }
+  .step-body h3{
+    font-family: var(--head); font-weight:600; font-size:1.28rem; margin-bottom:10px;
+  }
+  .step-body p{ color: var(--ink-dim); max-width: 620px; font-size:0.98rem; }
+
+  /* ---------- STACK CARDS ---------- */
+  .stack-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .stack-card{
+    position:relative;
+    border: 1px solid var(--border);
+    padding: 26px 22px 24px;
+    background: rgba(14,42,71,0.35);
+    transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    display:flex; flex-direction:column; height:100%;
+  }
+  .stack-card:hover{
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+    background: rgba(14,42,71,0.6);
+  }
+  .stack-card .tag{
+    font-family: var(--mono); font-size:0.68rem; color: var(--ink-faint);
+    margin-bottom:18px;
+  }
+  .stack-card h3{
+    font-family: var(--head); font-weight:600; font-size:1.12rem; margin-bottom:10px;
+  }
+  .stack-card p{ color: var(--ink-dim); font-size:0.88rem; flex:1; margin-bottom: 20px; }
+  .stack-card .go{
+    font-family: var(--mono); font-size:0.78rem; color: var(--yellow);
+    display:flex; align-items:center; gap:8px;
+  }
+  .stack-card .go svg{ transition: transform .2s ease; }
+  .stack-card:hover .go svg{ transform: translateX(4px); }
+
+  /* ---------- RESOURCES ---------- */
+  .res-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .res-card{
+    border-left: 2px solid var(--border);
+    padding: 6px 0 6px 22px;
+    transition: border-color .2s ease;
+  }
+  .res-card:hover{ border-color: var(--coral); }
+  .res-card .kicker{
+    font-family: var(--mono); font-size:0.72rem; color: var(--ink-faint); margin-bottom:10px; display:block;
+  }
+  .res-card h3{
+    font-family: var(--head); font-weight:600; font-size:1.05rem; line-height:1.35; margin-bottom: 14px;
+  }
+  .res-card a.read{
+    font-family: var(--mono); font-size:0.78rem; color: var(--ink);
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .res-card:hover a.read{ color: var(--coral); }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--paper);
+    text-align:center;
+    padding: 90px 0;
+  }
+  .cta-band .section-tag{ margin: 0 auto 16px; }
+  .cta-band h2{
+    font-family: var(--head); font-weight:700;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    max-width: 620px; margin: 0 auto 30px;
+  }
+  .cta-band .hero-ctas{ justify-content:center; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 70px 0 34px; }
+  .foot-grid{
+    display:grid; grid-template-columns: 1.3fr repeat(3, 1fr); gap: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .foot-brand p{ color: var(--ink-dim); font-size:0.9rem; margin-top:16px; max-width: 260px; }
+  .foot-col h4{
+    font-family: var(--mono); font-size:0.75rem; color: var(--ink-faint);
+    margin-bottom: 18px; font-weight:500;
+  }
+  .foot-col ul li{ margin-bottom: 11px; }
+  .foot-col ul li a{
+    font-size:0.9rem; color: var(--ink-dim);
+    transition: color .2s ease;
+  }
+  .foot-col ul li a:hover{ color: var(--yellow); }
+
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top: 26px; flex-wrap:wrap; gap:12px;
+  }
+  .foot-bottom p{ font-family: var(--mono); font-size:0.75rem; color: var(--ink-faint); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .diagram{ order: -1; }
+    .stack-grid{ grid-template-columns: repeat(2, 1fr); }
+    .res-grid{ grid-template-columns: 1fr; }
+    .foot-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 700px){
+    .nav-links, .nav-cta{ display:none; }
+    .burger{ display:flex; }
+    .mobile-menu.open{
+      display:flex; flex-direction:column; gap:2px;
+      position:absolute; top:76px; left:0; right:0;
+      background: var(--bg-2); border-bottom:1px solid var(--border-soft);
+      padding: 10px 28px 22px;
+    }
+    .mobile-menu a{
+      padding: 13px 0; border-bottom: 1px solid var(--border-soft);
+      color: var(--ink-dim); font-size:0.95rem;
+    }
+    .mobile-menu a.mcta{ color: var(--yellow); font-family: var(--mono); }
+
+    .stack-grid{ grid-template-columns: 1fr; }
+    .foot-grid{ grid-template-columns: 1fr; gap: 30px; }
+    .step{ grid-template-columns: 1fr; gap:8px; }
+    section{ padding: 64px 0; }
+    .hero{ padding-top: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <span class="mark"><span>JA</span></span>
+      JustAcademy
+    </a>
+    <nav class="nav-links">
+      <a href="#blueprint">The Blueprint</a>
+      <a href="#stacks">Build Your Stack</a>
+      <a href="#resources">Field Notes</a>
+    </nav>
+    <a class="nav-cta" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">Start Building →</a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#blueprint">The Blueprint</a>
+    <a href="#stacks">Build Your Stack</a>
+    <a href="#resources">Field Notes</a>
+    <a class="mcta" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">Start Building →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line"><span class="dash"></span> PORTFOLIO / INTERVIEW-READY / REV. 2026</div>
+        <h1 class="hero-title">Most portfolios get skimmed for six seconds. <em>Build one that gets read.</em></h1>
+        <p class="hero-sub">A working blueprint for turning your GitHub into an interview magnet — what to build, how to explain it, and where to host it so recruiters actually stop scrolling.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">Join the Bootcamp →</a>
+          <a class="btn-ghost" href="https://www.justacademy.co/blog-detail/how-to-build-a-developer-portfolio-that-gets-you-interviews" target="_blank" rel="noopener">Read the full guide</a>
+        </div>
+      </div>
+
+      <div class="diagram">
+        <div class="c2"></div><div class="c3"></div>
+        <div class="diagram-label"><span>FIG. 01 — PORTFOLIO.SPEC</span><span>SCALE 1:1</span></div>
+        <div class="card-row"><span class="dim">A</span><span class="part">Live projects</span><span class="val">DEPLOYED</span></div>
+        <div class="card-row"><span class="dim">B</span><span class="part">Case study write-ups</span><span class="val">NOT DESCRIPTIONS</span></div>
+        <div class="card-row"><span class="dim">C</span><span class="part">Clean commit history</span><span class="val">VISIBLE</span></div>
+        <div class="card-row"><span class="dim">D</span><span class="part">Working README</span><span class="val">SETUP + DEMO</span></div>
+        <div class="card-row"><span class="dim">E</span><span class="part">Tailored to the role</span><span class="val">NOT GENERIC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span><i>▸</i> PROJECTS &gt; TUTORIALS <i>▸</i> CASE STUDIES &gt; DESCRIPTIONS <i>▸</i> DEPLOYED &gt; LOCALHOST <i>▸</i> README &gt; RESUME <i>▸</i> DEPTH &gt; VOLUME</span>
+      <span><i>▸</i> PROJECTS &gt; TUTORIALS <i>▸</i> CASE STUDIES &gt; DESCRIPTIONS <i>▸</i> DEPLOYED &gt; LOCALHOST <i>▸</i> README &gt; RESUME <i>▸</i> DEPTH &gt; VOLUME</span>
+    </div>
+  </div>
+
+  <!-- BLUEPRINT STEPS -->
+  <section id="blueprint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-tag">SEQUENCE 01–06</span>
+          <h2 class="section-title">The build order recruiters actually respond to</h2>
+        </div>
+        <p class="section-note">Follow it in order. Skipping straight to "make it pretty" is the most common reason portfolios go unread.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Pick one stack and go deep</h3>
+            <p>A portfolio with one stack done well beats five stacks done shallowly. Choose MERN, Python, or another path — then commit long enough to build something non-trivial in it.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Build proof, not tutorials</h3>
+            <p>Two or three projects that solve a real, specific problem will outperform ten clones of a to-do app. Pick problems from your own life, campus, or community — they're easier to explain with conviction.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>Write case studies, not captions</h3>
+            <p>For each project, document the problem, the decisions you made, the trade-offs, and what you'd do differently. This is what separates "I made an app" from "I can think like an engineer."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3>Ship it somewhere clickable</h3>
+            <p>A live link beats a local screenshot every time. Deploy your projects, keep them running, and make sure a recruiter can click through without cloning a repo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h3>Clean up what's public</h3>
+            <p>Pin your best repos, write real README files with setup steps and screenshots, and archive or hide the practice code that doesn't represent your current skill level.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">06</div>
+          <div class="step-body">
+            <h3>Tailor it to the role you want</h3>
+            <p>A generic portfolio speaks to no one in particular. Before you apply, adjust the order and framing of your projects to match the job description in front of you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACKS -->
+  <section id="stacks">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-tag">MATERIALS LIST</span>
+          <h2 class="section-title">Pick the stack you'll build your portfolio around</h2>
+        </div>
+        <p class="section-note">Structured, mentor-led training to help you build the projects your portfolio needs — not just watch someone else build them.</p>
+      </div>
+
+      <div class="stack-grid">
+        <a class="stack-card" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">
+          <span class="tag">JOB BOOTCAMP · PUNE</span>
+          <h3>MERN Stack Developer</h3>
+          <p>Build and ship full production apps with MongoDB, Express, React and Node — the stack behind most modern startup products.</p>
+          <span class="go">View bootcamp <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8 1L13 5L8 9M13 5H1" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </a>
+        <a class="stack-card" href="https://www.justacademy.co/course-detail/pune/python-training-in-pune" target="_blank" rel="noopener">
+          <span class="tag">COURSE · PUNE</span>
+          <h3>Python Training</h3>
+          <p>Learn Python from fundamentals through to real applications — the foundation for backend, automation and data-driven projects.</p>
+          <span class="go">View course <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8 1L13 5L8 9M13 5H1" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </a>
+        <a class="stack-card" href="https://www.justacademy.co/course-detail/pune/javascript-training-in-pune" target="_blank" rel="noopener">
+          <span class="tag">COURSE · PUNE</span>
+          <h3>JavaScript Training</h3>
+          <p>Master the language behind almost every portfolio project you'll build, from interactive UIs to full back-end logic.</p>
+          <span class="go">View course <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8 1L13 5L8 9M13 5H1" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </a>
+        <a class="stack-card" href="https://www.justacademy.co/course-detail/pune/selenium-training-in-pune" target="_blank" rel="noopener">
+          <span class="tag">COURSE · PUNE</span>
+          <h3>Selenium Training</h3>
+          <p>Add automated testing to your projects — a skill that quietly signals production-level thinking to anyone reviewing your code.</p>
+          <span class="go">View course <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8 1L13 5L8 9M13 5H1" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-tag">FIELD NOTES</span>
+          <h2 class="section-title">Further reading before you start building</h2>
+        </div>
+        <p class="section-note">Three short reads to help you choose a path and pitch it well.</p>
+      </div>
+
+      <div class="res-grid">
+        <div class="res-card">
+          <span class="kicker">CAREER PATHS</span>
+          <h3>MERN Stack vs Full Stack Java — which career path is better in 2026?</h3>
+          <a class="read" href="https://www.justacademy.co/blog-detail/mern-stack-vs-full-stack-java-which-career-path-is-better-in-2026" target="_blank" rel="noopener">Read the comparison →</a>
+        </div>
+        <div class="res-card">
+          <span class="kicker">CERTIFICATION</span>
+          <h3>Python certification guide — which certificate actually boosts your career in 2026?</h3>
+          <a class="read" href="https://www.justacademy.co/blog-detail/python-certification-guide-which-certificate-boosts-your-career-in-2026" target="_blank" rel="noopener">Read the guide →</a>
+        </div>
+        <div class="res-card">
+          <span class="kicker">PORTFOLIO</span>
+          <h3>How to build a developer portfolio that gets you interviews</h3>
+          <a class="read" href="https://www.justacademy.co/blog-detail/how-to-build-a-developer-portfolio-that-gets-you-interviews" target="_blank" rel="noopener">Read the full guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="wrap">
+      <span class="section-tag" style="display:block; text-align:center;">READY TO DRAFT YOURS?</span>
+      <h2>Stop tweaking your resume. Start shipping the projects that speak for you.</h2>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">Join the MERN Bootcamp →</a>
+        <a class="btn-ghost" href="https://www.justacademy.co/course-detail/pune/python-training-in-pune" target="_blank" rel="noopener">Explore Python Training</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo">
+          <span class="mark"><span>JA</span></span>
+          JustAcademy
+        </a>
+        <p>Practical, project-first training in Pune — built to help you ship the portfolio that gets you interviewed, not just certified.</p>
+      </div>
+      <div class="foot-col">
+        <h4>BOOTCAMP</h4>
+        <ul>
+          <li><a href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">MERN Stack Developer</a></li>
+        </ul>
+        <h4 style="margin-top:26px;">COURSES</h4>
+        <ul>
+          <li><a href="https://www.justacademy.co/course-detail/pune/python-training-in-pune" target="_blank" rel="noopener">Python Training</a></li>
+          <li><a href="https://www.justacademy.co/course-detail/pune/javascript-training-in-pune" target="_blank" rel="noopener">JavaScript Training</a></li>
+          <li><a href="https://www.justacademy.co/course-detail/pune/selenium-training-in-pune" target="_blank" rel="noopener">Selenium Training</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>FIELD NOTES</h4>
+        <ul>
+          <li><a href="https://www.justacademy.co/blog-detail/mern-stack-vs-full-stack-java-which-career-path-is-better-in-2026" target="_blank" rel="noopener">MERN vs Full Stack Java</a></li>
+          <li><a href="https://www.justacademy.co/blog-detail/python-certification-guide-which-certificate-boosts-your-career-in-2026" target="_blank" rel="noopener">Python Certification Guide</a></li>
+          <li><a href="https://www.justacademy.co/blog-detail/how-to-build-a-developer-portfolio-that-gets-you-interviews" target="_blank" rel="noopener">The Portfolio Guide</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>ON THIS PAGE</h4>
+        <ul>
+          <li><a href="#blueprint">The Blueprint</a></li>
+          <li><a href="#stacks">Build Your Stack</a></li>
+          <li><a href="#resources">Field Notes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 JUSTACADEMY — DRAFTED FOR DEVELOPERS WHO BUILD IN PUBLIC</p>
+      <p>PORTFOLIO.SPEC / REV. 2026</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
